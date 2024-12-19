@@ -54,16 +54,15 @@
 </p>
 
 ## Updates
-- [12/11/24] 🔥 Multi-modal foundation models [blast](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models), but how will they help robots? We have released RoboVLMs to help the community on this! RoboVLMs is a flexible codebase that allows integrating most of VLMs within 30 lines of codes. We also release the strongest VLA model (driven by KosMos VLM backbone). See our technical report at [here](robovlms.github.io).
+- [12/11/24] 🔥 Multi-modal foundation models [blast](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation), but how will they help robots? We have released RoboVLMs to help the community on this! RoboVLMs is a flexible codebase that allows integrating most of VLMs within 30 lines of codes. We also release the strongest VLA model (driven by KosMos VLM backbone). See our technical report at [here](https://robovlms.github.io).
 
 ## Contents
 - [Installation](#installation)
 - [VLA Benchmarks](#vla-benchmarks-comparison)
-- [VLM Integration Tutorial](#tutorial)
-- [Train](#train)
+- [VLM Integration Tutorial](#vlm-integration-tutorial)
+- [Training](#training)
 - [Evaluation](#evaluation)
 - [Supported Backbones & Architectures](supported-backbones--vla-architectures-updating)
-- [File Structure](#file-structure)
 - [BibTex](#bibtex)
 
 
@@ -95,7 +94,7 @@ bash scripts/setup_calvin.sh
 # For SimplerEnv Installation
 bash scripts/setup_simplerenv.sh
 ```
-To validate if CALVIN is successfully installed, run the following command:
+To validate if CALVIN/SimplerEnv is successfully installed, run the following command:
 ```python
 # For CALVIN simulation Verification
 python eval/calvin/env_test.py
@@ -107,7 +106,8 @@ python eval/simpler/env_test.py
 ## VLA Benchmarks Comparison
 The rigorous definition of VLAs is not consistent in different works, we regard fine-tuning pre-trained VLMs as the key factor to identify VLAs in this work.
 
-### CALVIN benchmark
+Note: **P.H.** is short for `Policy Head'
+### CALVIN Benchmark
 **ABCD -> D**
 | Method                     | VLA? | Train | 1     | 2     | 3     | 4     | 5     | Avg. Len. |
 |----------------------------|------|-------|-------|-------|-------|-------|-------|-----------|
@@ -131,10 +131,10 @@ The rigorous definition of VLAs is not consistent in different works, we regard 
 | GR-1                       | ✔    | ABC   | 0.854 | 0.712 | 0.596 | 0.497 | 0.401 | 3.06      |
 | KosMos P.H. (RoboVLMs)     | ✔    | ABC   | 0.980 | 0.936 | 0.854 | 0.778 | 0.704 | 4.25      |
 
-### Real-world experiments
+### SimplerEnv Experiments
 ![simpler](./imgs/simpler_hist_avg.png "SimplerEnv Performance")
 
-### Real-World experiments
+### Real-World Experiments
 ![real-world](./imgs/real_hist.png "Real-World Performance")
 
 ## VLM Integration Tutorial
@@ -291,7 +291,7 @@ The `scripts/run.sh` script is the default training script, which assumes the us
 
 ### Dataset
 
-We support the CALVIN dataset and custom datasets for training, as well as Open X-Embodiment dataset mixups. Additionally, you can define your own custom dataset in the following format:
+We support the CALVIN dataset as well as Open X-Embodiment datasets. Additionally, you can define your own custom dataset in the following format:
 
 ```python
 "rgb": image_tensors,           # Shape: [Batch Size, Window Size, Channel, Width, Height]
@@ -332,6 +332,7 @@ Calvin Dataset:
     "model_name": "kosmos"   # Same as 'model' in configs
 }
 ```
+
 SimplerEnv Dataset:
 ```python
 "train_dataset": {
