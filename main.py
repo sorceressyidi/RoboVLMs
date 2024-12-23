@@ -121,13 +121,15 @@ def experiment(variant):
             "pred_hand_image", False
         )
 
-    if model_load_path is None:
+    if not os.path.exists(variant['model_path']):
         repo_name = variant["model_url"].split("/")[-1].split(".")[0]
         print(
             f"VLM backbone does not exist, cloning {variant['model']} from {variant['model_url']}..."
         )
         os.system(f"git clone {variant['model_url']} .vlms/{repo_name}")
-        model_load_path = ".vlms/" + repo_name
+        variant['model_path'] = ".vlms/" + repo_name
+        variant['model_config'] = os.path.join(variant['model_path'], "config.json")
+    
     if variant["model"] == "kosmos":
         import transformers
 
@@ -137,6 +139,7 @@ def experiment(variant):
                 package_dir
             )
         )
+    
     model = BaseTrainer.from_checkpoint(
         model_load_path, variant.get("model_load_source", "torch"), variant
     )
