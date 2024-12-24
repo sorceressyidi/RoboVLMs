@@ -34,6 +34,8 @@
     "output_root": "runs/checkpoints",
     "log_root": "runs/logs",
     "cache_root": "runs/cache",
+    "model_path": ".vlms/mpt-1b-redpajama-200b-dolly",
+    "model_config": ".vlms/mpt-1b-redpajama-200b-dolly/config.json",
     "model_load_path": null,
     "model_load_source": "torch",
     "gradient_clip_val": 1.0,

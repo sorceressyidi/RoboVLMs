@@ -62,7 +62,7 @@
 - [VLM Integration Tutorial](#vlm-integration-tutorial)
 - [Training](#training)
 - [Evaluation](#evaluation)
-- [Supported Backbones & Architectures](supported-backbones--vla-architectures-updating)
+- [Supported Backbones & Architectures](#supported-backbones--vla-architectures-updating)
 - [BibTex](#bibtex)
 
 

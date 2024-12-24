@@ -9,4 +9,4 @@ ckpt_paths = [
 
 for i, (ckpt, config) in enumerate(ckpt_paths):
     print("evaluating checkpoint {}".format(ckpt))
-    os.system("bash bash/simpler_eval/bridge.bash {} {}".format(ckpt, config))
+    os.system("bash scripts/bridge.bash {} {}".format(ckpt, config))
