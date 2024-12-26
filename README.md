@@ -80,6 +80,11 @@ conda create -n robovlms python=3.10 -y
 conda activate robovlms
 conda install cudatoolkit cudatoolkit-dev -y
 pip install -e .
+
+# For training on OXE dataset, use our fork of openvla
+git clone https://github.com/lixinghang12/openvla
+cd openvla
+pip install -e .
 ```
 
 If you want to do evaluation (simulation) rather than only training on offline data, we suggest you to install the benchmark environments first before installing `robovlms`. We also suggest create seperate virtual envs to prevent from conflicts.
@@ -404,7 +409,7 @@ Make sure that the paths to the checkpoint files and configuration are correct a
 
 ## Supported Backbones & VLA Architectures (Updating)
 ✅ Fully tested and tuned 
-⚠️ Not fully tested (Performances may be bad under default hyper-parameters)
+⚠️ Not fully tested (Performances may not be reasonable under default hyper-parameters)
 |               | One-Step Continuous | One-Step Discrete | Interleaved Continuous | Policy-Head Continuous |
 |---------------|:------------------:|:----------------:|:---------------------:|:---------------------:|
 | [Flamingo](https://github.com/mlfoundations/open_flamingo)      | ✅                 | ✅                | N/A                     | ✅                     |
