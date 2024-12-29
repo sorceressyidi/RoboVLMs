@@ -200,7 +200,10 @@ class BaseModelInference(CustomModel):
         plt.savefig(save_path)
 
     def step(self, image, goal):
-        action = super.step(image, goal)
+        obs = {}
+        obs['rgb_obs'] = {}
+        obs["rgb_obs"]['rgb_static'] = image
+        action = super.step(obs, goal)
 
         if isinstance(action, np.ndarray):
             action = torch.from_numpy(action)
