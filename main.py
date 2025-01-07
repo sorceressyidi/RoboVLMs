@@ -139,6 +139,10 @@ def experiment(variant):
                 package_dir
             )
         )
+
+        import importlib
+
+        importlib.reload(transformers)
     
     model = BaseTrainer.from_checkpoint(
         model_load_path, variant.get("model_load_source", "torch"), variant
