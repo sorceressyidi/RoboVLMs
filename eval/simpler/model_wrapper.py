@@ -9,6 +9,7 @@ import json
 from transforms3d.euler import euler2axangle
 
 from robovlms.train.base_trainer import BaseTrainer
+from eval.calvin.model_wrapper import CustomModel
 
 
 class BaseModelInference(CustomModel):
@@ -61,9 +62,10 @@ class BaseModelInference(CustomModel):
         self.num_image_history = 0
 
         self.init_config(ckpt_path, configs, device, save_dir)
+        self.raw_calvin=True
 
     def reset(self):
-        super.reset()
+        super().reset()
 
         self.sticky_action_is_on = False
         self.gripper_action_repeat = 0
@@ -203,7 +205,7 @@ class BaseModelInference(CustomModel):
         obs = {}
         obs['rgb_obs'] = {}
         obs["rgb_obs"]['rgb_static'] = image
-        action = super.step(obs, goal)
+        action = super().step(obs, goal)
 
         if isinstance(action, np.ndarray):
             action = torch.from_numpy(action)
