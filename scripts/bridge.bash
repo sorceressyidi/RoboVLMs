@@ -2,7 +2,7 @@
 policy_model=robovlm
 ckpt_path=$1
 config_path=$2
-source activate robovlm
+conda activate robovlms
 
 scene_name=bridge_table_1_v1
 robot=widowx
