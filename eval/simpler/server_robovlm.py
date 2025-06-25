@@ -36,7 +36,7 @@ import uvicorn
 
 
 # ------------------------------------------
-# Octo Inference Server
+# RoboVLM Inference Server
 # ------------------------------------------
 class RoboVLMServer:
     def __init__(self, model) -> None:
