@@ -7,7 +7,7 @@ from eval.simpler.env_utlis import DictAction
 from eval.simpler.model_wrapper import BaseModelInference
 
 import argparse
-
+import json
 import numpy as np
 from sapien.core import Pose
 from transforms3d.euler import euler2quat
@@ -88,12 +88,10 @@ class RoboVLMServer:
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    parser = argparse.ArgumentParser(description='Processing Scene Generation')
-    parser.add_argument('--ckpt_path', type=str, default=None, help='Path to the model checkpoint')
-    parser.add_argument('--config_path', type=str, default=None, help='Path to the model configuration')
-    args = parser.parse_args()
-    ckpt_path = args.ckpt_path
-    config_path = args.config_path
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    config_path = os.path.abspath(os.path.join(current_dir, "../../../model_config.json"))
+    ckpt_path = json.load(open(config_path, "r"))["robovlm_ckpt"]
+    config_path = json.load(open(config_path, "r"))["robovlm_config"]
     
     from robovlms.utils.config_utils import load_config
     eval_log_dir = os.path.dirname(ckpt_path)
