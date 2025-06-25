@@ -40,7 +40,7 @@ import uvicorn
 # ------------------------------------------
 class RoboVLMServer:
     def __init__(self, model) -> None:
-        logging.info("Initializing Octo model...")
+        logging.info("Initializing RoboVLM model...")
         self.model = model
         self.task_description = "put the spoon on the towel"
         self.model.reset()  # Pre-warm model
@@ -81,7 +81,7 @@ class RoboVLMServer:
             return JSONResponse(content={"error": str(e)}, status_code=500)
 
 
-    def run(self, host: str = "0.0.0.0", port: int = 8000) -> None:
+    def run(self, host: str = "0.0.0.0", port: int = 9000) -> None:
         import uvicorn
         logging.info(f"🚀 Running RoboVLM server on http://{host}:{port}")
         uvicorn.run(self.app, host=host, port=port)
